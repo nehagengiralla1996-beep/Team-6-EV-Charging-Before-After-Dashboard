@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team 6 | EV Charging KPI Comparison</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #14213d;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background: #e8f1ff;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+h1 { font-size: 38px; margin: 10px; }
+h2 { font-size: 26px; }
+p { font-size: 20px; line-height: 1.5; }
+
+.periods {
+  text-align: center;
+  padding: 18px;
+  font-size: 20px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+  padding: 25px;
+}
+
+.card {
+  background: white;
+  border: 2px solid #bcc9da;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.label {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 18px;
+}
+
+.value {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.track {
+  background: #edf1f5;
+  height: 35px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.before { background: #174ea6; height: 100%; }
+.after { background: #08783e; height: 100%; }
+
+.change {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.summary {
+  background: #e8f1ff;
+  margin: 25px;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  font-size: 18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>TEAM 6 – EV Charging Site Selection</h1>
+  <h2>Before and After Solution Impact Dashboard</h2>
+  <p>Synthetic Dataset Comparison</p>
+</header>
+
+<div class="periods">
+  <b>Before:</b> January 2024 – July 2026<br>
+  <b>After:</b> July 2026 – February 2029 (Simulated)
+</div>
+
+<div class="dashboard" id="dashboard"></div>
+
+<section class="summary">
+  <h2>Overall Conclusion</h2>
+  <p>
+    The proposed solution reduced simulated decision time
+    by 20.07%. Average daily charging sessions at selected
+    installations increased from 7.83 to 12.84.
+  </p>
+  <p>
+    These results represent a synthetic future-state
+    simulation, not measured real-world improvements.
+  </p>
+</section>
+
+<footer>
+  Team 6 | Master's Research Project |
+  Saint Louis University
+</footer>
+
+<script>
+
+const kpis = [
+  {
+    title: "Existing Site Performance Rate",
+    before: 77.42,
+    after: 81.05,
+    suffix: "%",
+    change: "+3.63 percentage points (+4.69%)",
+    insight: "Selected installations show stronger simulated performance."
+  },
+  {
+    title: "Average Expected Daily Charging Sessions",
+    before: 9.98,
+    after: 9.62,
+    suffix: "",
+    change: "-0.37 sessions (-3.66%)",
+    insight: "High-demand sites were prioritized for installation."
+  },
+  {
+    title: "Average Site Demand Potential",
+    before: 3428464.98,
+    after: 2842271.02,
+    suffix: "",
+    change: "-586,193.96 (-17.10%)",
+    insight: "Demand potential decreased among remaining candidates."
+  },
+  {
+    title: "Founder Acceptance Rate",
+    before: 34.10,
+    after: 37.80,
+    suffix: "%",
+    change: "+3.70 percentage points (+10.85%)",
+    insight: "More promising locations were accepted."
+  },
+  {
+    title: "Average Decision Time",
+    before: 22.65,
+    after: 18.10,
+    suffix: " days",
+    change: "-4.55 days (-20.07%)",
+    insight: "Automated evaluation supports faster decisions."
+  },
+  {
+    title: "Average Estimated Installation Cost",
+    before: 45880.88,
+    after: 46843.61,
+    prefix: "$",
+    suffix: "",
+    change: "+$962.74 (+2.10%)",
+    insight: "Individual costs stayed unchanged; candidate composition changed."
+  }
+];
+
+function format(value, kpi) {
+  return (kpi.prefix || "") +
+    value.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + kpi.suffix;
+}
+
+document.getElementById("dashboard").innerHTML =
+kpis.map(kpi => {
+  const max = Math.max(kpi.before, kpi.after) * 1.1;
+
+  return `
+    <div class="card">
+      <h2>${kpi.title}</h2>
+
+      <div class="label">Before – Dataset 1</div>
+      <div class="value">${format(kpi.before, kpi)}</div>
+      <div class="track">
+        <div class="before"
+          style="width:${kpi.before / max * 100}%">
+        </div>
+      </div>
+
+      <div class="label">After – Dataset 2</div>
+      <div class="value">${format(kpi.after, kpi)}</div>
+      <div class="track">
+        <div class="after"
+          style="width:${kpi.after / max * 100}%">
+        </div>
+      </div>
+
+      <div class="change">${kpi.change}</div>
+      <p>${kpi.insight}</p>
+    </div>
+  `;
+}).join("");
+
+</script>
+</body>
+</html>
