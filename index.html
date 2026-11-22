@@ -2,84 +2,154 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Team 6 | EV Charging KPI Comparison</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Team 6 | EV Charging Impact Dashboard</title>
 
 <style>
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: #ffffff;
+  background: #f4f7fb;
   color: #14213d;
   font-family: Arial, sans-serif;
 }
 
 header {
-  background: #e8f1ff;
+  background: white;
+  padding: 30px;
   text-align: center;
-  padding: 30px 20px;
+  border-bottom: 4px solid #174ea6;
 }
 
-h1 { font-size: 38px; margin: 10px; }
-h2 { font-size: 26px; }
-p { font-size: 20px; line-height: 1.5; }
+h1 { font-size: 38px; margin: 10px 0; }
+h2 { font-size: 28px; }
+h3 { font-size: 23px; margin-top: 0; }
+p { font-size: 18px; line-height: 1.5; }
 
-.periods {
-  text-align: center;
-  padding: 18px;
-  font-size: 20px;
+main {
+  max-width: 1600px;
+  margin: auto;
+  padding: 24px;
 }
 
-.dashboard {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 24px;
-  padding: 25px;
+  grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+  gap: 22px;
 }
 
 .card {
   background: white;
-  border: 2px solid #bcc9da;
+  border: 2px solid #d5deea;
   border-radius: 14px;
   padding: 24px;
+  min-width: 0;
 }
 
-.label {
+.big {
+  font-size: 40px;
+  font-weight: bold;
+  color: #08783e;
+}
+
+.legend {
+  text-align: center;
   font-size: 20px;
+  margin: 20px;
+}
+
+.blue { color: #174ea6; }
+.green { color: #08783e; }
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  height: 210px;
+  border-bottom: 2px solid #14213d;
+  padding-top: 30px;
+}
+
+.bar {
+  width: 32%;
+  position: relative;
+  border-radius: 5px 5px 0 0;
+}
+
+.bar span {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-weight: bold;
+  font-size: 17px;
+  padding-bottom: 5px;
+}
+
+.before { background: #174ea6; }
+.after { background: #08783e; }
+
+.labels {
+  display: flex;
+  justify-content: space-around;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.change {
+  font-size: 23px;
   font-weight: bold;
   margin-top: 18px;
+  text-align: center;
 }
 
-.value {
-  font-size: 30px;
+.donut {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: grid;
+  place-items: center;
+}
+
+.center {
+  width: 130px;
+  height: 130px;
+  background: white;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-size: 25px;
   font-weight: bold;
+}
+
+.list {
+  font-size: 20px;
+  line-height: 1.9;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  gap: 22px;
 }
 
 .track {
-  background: #edf1f5;
-  height: 35px;
+  background: #e7edf5;
+  height: 30px;
+  margin: 10px 0 15px;
   border-radius: 5px;
   overflow: hidden;
 }
 
-.before { background: #174ea6; height: 100%; }
-.after { background: #08783e; height: 100%; }
-
-.change {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.summary {
-  background: #e8f1ff;
-  margin: 25px;
-  padding: 25px;
-  border-radius: 12px;
-}
+.track div { height: 100%; }
 
 footer {
+  background: white;
   text-align: center;
   padding: 25px;
   font-size: 18px;
@@ -91,128 +161,231 @@ footer {
 <body>
 
 <header>
-  <h1>TEAM 6 – EV Charging Site Selection</h1>
-  <h2>Before and After Solution Impact Dashboard</h2>
-  <p>Synthetic Dataset Comparison</p>
+  <h1>TEAM 6 | EV Charging Site Selection</h1>
+  <h2>Before and After Impact Dashboard</h2>
+  <p>
+    Dataset 1: Jan 1, 2024 – July 18, 2026<br>
+    Dataset 2: July 19, 2026 – Feb 2, 2029
+    (Simulated)
+  </p>
 </header>
 
-<div class="periods">
-  <b>Before:</b> January 2024 – July 2026<br>
-  <b>After:</b> July 2026 – February 2029 (Simulated)
+<main>
+
+<h2>Executive Overview</h2>
+
+<div class="grid">
+
+<div class="card">
+  <h3>Decision Time Reduction</h3>
+  <div class="big">20.07%</div>
+  <p>22.65 → 18.10 days</p>
 </div>
 
-<div class="dashboard" id="dashboard"></div>
+<div class="card">
+  <h3>Actual Daily Charging Sessions</h3>
+  <div class="big">+63.85%</div>
+  <p>7.83 → 12.84 sessions per site</p>
+</div>
 
-<section class="summary">
-  <h2>Overall Conclusion</h2>
-  <p>
-    The proposed solution reduced simulated decision time
-    by 20.07%. Average daily charging sessions at selected
-    installations increased from 7.83 to 12.84.
-  </p>
-  <p>
-    These results represent a synthetic future-state
-    simulation, not measured real-world improvements.
-  </p>
-</section>
+<div class="card">
+  <h3>Site Performance Rate</h3>
+  <div class="big">81.05%</div>
+  <p>Before: 77.42%</p>
+</div>
+
+</div>
+
+<h2>Six KPI Comparisons</h2>
+
+<div class="legend">
+  <b class="blue">■ Before – Dataset 1</b>
+  &nbsp;&nbsp;
+  <b class="green">■ After – Dataset 2</b>
+</div>
+
+<div class="grid" id="kpis"></div>
+
+<h2>Founder Decision Distribution</h2>
+
+<div class="two">
+
+<div class="card">
+  <h3>Before Solution</h3>
+  <div class="donut" style="background:conic-gradient(
+    #08783e 0% 34.1%,
+    #d97706 34.1% 70.4%,
+    #b91c1c 70.4% 100%
+  )">
+    <div class="center">1,000<br>Sites</div>
+  </div>
+
+  <div class="list">
+    🟢 Accepted: 341 (34.1%)<br>
+    🟠 Delayed: 363 (36.3%)<br>
+    🔴 Declined: 296 (29.6%)
+  </div>
+</div>
+
+<div class="card">
+  <h3>After Solution</h3>
+  <div class="donut" style="background:conic-gradient(
+    #08783e 0% 37.8%,
+    #d97706 37.8% 71.9%,
+    #b91c1c 71.9% 100%
+  )">
+    <div class="center">1,000<br>Sites</div>
+  </div>
+
+  <div class="list">
+    🟢 Accepted: 378 (37.8%)<br>
+    🟠 Delayed: 341 (34.1%)<br>
+    🔴 Declined: 281 (28.1%)
+  </div>
+</div>
+
+</div>
+
+<h2>Charging Performance at Installed Sites</h2>
+
+<div class="two">
+
+<div class="card">
+<h3>Before – 60 Operating Sites</h3>
+<p>Expected: <b>10.12 sessions/day</b></p>
+<div class="track">
+  <div class="before" style="width:63.25%"></div>
+</div>
+
+<p>Actual: <b>7.83 sessions/day</b></p>
+<div class="track">
+  <div class="after" style="width:48.94%"></div>
+</div>
+</div>
+
+<div class="card">
+<h3>After – 60 Selected Installations</h3>
+<p>Expected: <b>15.84 sessions/day</b></p>
+<div class="track">
+  <div class="before" style="width:99%"></div>
+</div>
+
+<p>Simulated actual: <b>12.84 sessions/day</b></p>
+<div class="track">
+  <div class="after" style="width:80.25%"></div>
+</div>
+</div>
+
+</div>
+
+<h2>Installed Charger Type Distribution</h2>
+
+<div class="two">
+
+<div class="card">
+<h3>Before Solution</h3>
+
+<div class="donut" style="background:conic-gradient(
+  #174ea6 0% 68.333%,
+  #08783e 68.333% 100%
+)">
+<div class="center">60<br>Sites</div>
+</div>
+
+<p class="blue"><b>Level 2:</b> 41 sites</p>
+<p class="green"><b>DC Fast:</b> 19 sites</p>
+</div>
+
+<div class="card">
+<h3>After Solution</h3>
+
+<div class="donut" style="background:conic-gradient(
+  #174ea6 0% 81.667%,
+  #08783e 81.667% 100%
+)">
+<div class="center">60<br>Sites</div>
+</div>
+
+<p class="blue"><b>Level 2:</b> 49 sites</p>
+<p class="green"><b>DC Fast:</b> 11 sites</p>
+</div>
+
+</div>
+
+<h2>Percentage Change Across KPIs</h2>
+<div class="card" id="changes"></div>
+
+</main>
 
 <footer>
-  Team 6 | Master's Research Project |
-  Saint Louis University
+<b>Team 6 | Saint Louis University</b><br><br>
+Academic simulation using synthetic data.
+Results are not measured real-world outcomes.
 </footer>
 
 <script>
 
-const kpis = [
-  {
-    title: "Existing Site Performance Rate",
-    before: 77.42,
-    after: 81.05,
-    suffix: "%",
-    change: "+3.63 percentage points (+4.69%)",
-    insight: "Selected installations show stronger simulated performance."
-  },
-  {
-    title: "Average Expected Daily Charging Sessions",
-    before: 9.98,
-    after: 9.62,
-    suffix: "",
-    change: "-0.37 sessions (-3.66%)",
-    insight: "High-demand sites were prioritized for installation."
-  },
-  {
-    title: "Average Site Demand Potential",
-    before: 3428464.98,
-    after: 2842271.02,
-    suffix: "",
-    change: "-586,193.96 (-17.10%)",
-    insight: "Demand potential decreased among remaining candidates."
-  },
-  {
-    title: "Founder Acceptance Rate",
-    before: 34.10,
-    after: 37.80,
-    suffix: "%",
-    change: "+3.70 percentage points (+10.85%)",
-    insight: "More promising locations were accepted."
-  },
-  {
-    title: "Average Decision Time",
-    before: 22.65,
-    after: 18.10,
-    suffix: " days",
-    change: "-4.55 days (-20.07%)",
-    insight: "Automated evaluation supports faster decisions."
-  },
-  {
-    title: "Average Estimated Installation Cost",
-    before: 45880.88,
-    after: 46843.61,
-    prefix: "$",
-    suffix: "",
-    change: "+$962.74 (+2.10%)",
-    insight: "Individual costs stayed unchanged; candidate composition changed."
-  }
+const data = [
+  ["Existing Site Performance Rate",77.417229,81.046096,"%","","Installed sites"],
+  ["Expected Daily Charging Sessions",9.981277,9.616277,"","","Remaining candidates"],
+  ["Average Site Demand Potential",3428464.98,2842271.02,"","","Remaining candidates"],
+  ["Founder Acceptance Rate",34.10,37.80,"%","","All sites"],
+  ["Average Decision Time",22.649,18.104," days","","All sites"],
+  ["Average Estimated Installation Cost",45880.8766,46843.6128,"","$","Remaining candidates"]
 ];
 
-function format(value, kpi) {
-  return (kpi.prefix || "") +
-    value.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }) + kpi.suffix;
+function fmt(n,p,s) {
+  return p+n.toLocaleString("en-US",{
+    maximumFractionDigits:2,
+    minimumFractionDigits:2
+  })+s;
 }
 
-document.getElementById("dashboard").innerHTML =
-kpis.map(kpi => {
-  const max = Math.max(kpi.before, kpi.after) * 1.1;
-
+document.getElementById("kpis").innerHTML =
+data.map(([name,b,a,s,p,group]) => {
+  const max = Math.max(b,a)*1.15;
+  const change = (a-b)/b*100;
   return `
-    <div class="card">
-      <h2>${kpi.title}</h2>
+  <div class="card">
+    <h3>${name}</h3>
+    <p>${group}</p>
+    <div class="chart">
+      <div class="bar before"
+      style="height:${b/max*100}%">
+      <span>${fmt(b,p,s)}</span></div>
 
-      <div class="label">Before – Dataset 1</div>
-      <div class="value">${format(kpi.before, kpi)}</div>
-      <div class="track">
-        <div class="before"
-          style="width:${kpi.before / max * 100}%">
-        </div>
-      </div>
-
-      <div class="label">After – Dataset 2</div>
-      <div class="value">${format(kpi.after, kpi)}</div>
-      <div class="track">
-        <div class="after"
-          style="width:${kpi.after / max * 100}%">
-        </div>
-      </div>
-
-      <div class="change">${kpi.change}</div>
-      <p>${kpi.insight}</p>
+      <div class="bar after"
+      style="height:${a/max*100}%">
+      <span>${fmt(a,p,s)}</span></div>
     </div>
-  `;
+
+    <div class="labels">
+      <span>Before</span><span>After</span>
+    </div>
+
+    <div class="change">
+      ${change>0?"+":""}${change.toFixed(2)}%
+    </div>
+  </div>`;
+}).join("");
+
+document.getElementById("changes").innerHTML =
+data.map(([name,b,a]) => {
+  const change = (a-b)/b*100;
+  return `
+  <p><b>${name}</b>:
+  ${change>0?"+":""}${change.toFixed(2)}%</p>
+  <div style="display:flex;background:#edf1f5;height:26px">
+    <div style="width:50%;display:flex;justify-content:flex-end;border-right:2px solid #14213d">
+      <div style="width:${change<0?Math.abs(change)/25*100:0}%;background:#174ea6"></div>
+    </div>
+    <div style="width:50%">
+      <div style="width:${change>0?change/25*100:0}%;height:100%;background:#08783e"></div>
+    </div>
+  </div>`;
 }).join("");
 
 </script>
+
 </body>
 </html>
